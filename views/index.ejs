@@ -1,16 +1,107 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/login.css">
     <title>Login</title>
-  </head>
-  <body>
-    <h2>Login</h2>
-    <form action="/login" method="POST">
-      <input type="text" name="username" placeholder="Username" required />
-      <input type="password" name="password" placeholder="Password" required />
-      <button type="submit">Login</button>
-    </form>
-  </body>
+</head>
+<body>
+    <header>
+        <h2 class="logo">Logo</h2>
+        <nav class="navigation">
+            <a href="#">Quienes somos</a>
+            <a href="#">Servicios</a>
+            <button class="btnLogin-popup">Login</button>
+        </nav>
+    </header>
+    <div class="wrapper">
+        <span class="icon-close"><ion-icon name="close-outline"></ion-icon></span>
+        <div class="form-box login">
+            <h2>Login</h2>
+            <form action="/login" method="POST">
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="person-circle-outline"></ion-icon></span>
+                    <input type="text" id="username" name="username" required>
+                    <label>Usuario</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="lock-closed-outline"></ion-icon></span>
+                    <input type="password" id="password" name="password" required>
+                    <label>Contraseña</label>
+                </div>
+                <div class="remember-forgot">
+                    <button type="submit" class="btn" id="btn-login" onclick="event.preventDefault();">Login</button>
+                </div>
+                <div class="login-register">
+                    <p>No tiene una cuenta? <a href="#" class="register-link">Registrarse</a></p>
+                </div>
+            </form>
+        </div>
+        <div class="form-box register">
+            <h2>Registro</h2>
+            <form action="#">
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="person-circle-outline"></ion-icon></span>
+                    <input type="text" required>
+                    <label>Nombre</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
+                    <input type="text" required>
+                    <label>Apellido</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="card-outline"></ion-icon></span>
+                    <input type="text" required>
+                    <label>Id</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="call-outline"></ion-icon></span>
+                    <input type="text" required>
+                    <label>Teléfono</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="lock-closed-outline"></ion-icon></span>
+                    <input type="password" required>
+                    <label>Contraseña</label>
+                </div>
+                <div class="remember-forgot">
+                    <button type="submit" class="btn">Registrarse</button>
+                </div>
+                <div class="login-register">
+                    <p>Ya posee una cuenta? <a href="#" class="login-link">Login</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="/controllers/login.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script>
+      document.getElementById('btn-login').addEventListener('click', function() {
+          const username = document.getElementById('username').value;
+          const password = document.getElementById('password').value;
+
+          // Realiza una solicitud POST al servidor para validar el usuario
+          fetch('/login', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({ username, password })
+          })
+          .then(response => response.json())
+          .then(data => {
+              if (data.success) {
+                  window.location.href = '/menu'; // Redirige al menú si la autenticación es exitosa
+              } else {
+                  alert('Usuario o contraseña incorrectos');
+              }
+          })
+          .catch(error => console.error('Error:', error));
+      });
+    </script>
+</body>
 </html>

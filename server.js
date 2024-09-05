@@ -52,6 +52,7 @@ io.on('connection', (socket) => {
   socket.on('newUser', (id, room) => {
     socket.join(room);
     io.to(room).emit('userJoined', id);
+
     socket.on('disconnect', () => {
       io.to(room).emit('userDisconnect', id);
     });

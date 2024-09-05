@@ -20,11 +20,11 @@
         <span class="icon-close"><ion-icon name="close-outline"></ion-icon></span>
         <div class="form-box login">
             <h2>Login</h2>
-            <form action="/login" method="POST">
+            <form action="#" id="formlog">
                 <div class="input-box">
-                    <span class="icon"><ion-icon name="person-circle-outline"></ion-icon></span>
+                    <span class="icon"><ion-icon name="mail-outline"></ion-icon></ion-icon></span>
                     <input type="text" id="username" name="username" required>
-                    <label>Usuario</label>
+                    <label>Email</label>
                 </div>
                 <div class="input-box">
                     <span class="icon"><ion-icon name="lock-closed-outline"></ion-icon></span>
@@ -32,7 +32,7 @@
                     <label>Contraseña</label>
                 </div>
                 <div class="remember-forgot">
-                    <button type="submit" class="btn" id="btn-login" onclick="event.preventDefault();">Login</button>
+                    <button class="btn" id="btninit">Login</button>
                 </div>
                 <div class="login-register">
                     <p>No tiene una cuenta? <a href="#" class="register-link">Registrarse</a></p>
@@ -79,29 +79,6 @@
     <script src="/controllers/login.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-    <script>
-      document.getElementById('btn-login').addEventListener('click', function() {
-          const username = document.getElementById('username').value;
-          const password = document.getElementById('password').value;
-
-          // Realiza una solicitud POST al servidor para validar el usuario
-          fetch('/login', {
-              method: 'POST',
-              headers: {
-                  'Content-Type': 'application/json'
-              },
-              body: JSON.stringify({ username, password })
-          })
-          .then(response => response.json())
-          .then(data => {
-              if (data.success) {
-                  window.location.href = '/menu'; // Redirige al menú si la autenticación es exitosa
-              } else {
-                  alert('Usuario o contraseña incorrectos');
-              }
-          })
-          .catch(error => console.error('Error:', error));
-      });
-    </script>
+    <script type="module" src="/controllers/authentication.js"></script>
 </body>
 </html>

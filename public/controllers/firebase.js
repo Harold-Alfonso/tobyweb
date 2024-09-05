@@ -121,43 +121,29 @@ export async function eliminarCuenta(email, password) {
 
 // Metodos de fireStore
 
-// Agregar datos
-export const CrearDatos = (codigo, nombre, descripcion, cantidad) => {
-  addDoc(collection(db, 'users'), {
-    codigo,
-    nombre,
-    descripcion,
-    cantidad,
-  })
-}
 
-// Agregar datos de usuario
+/*// Agregar datos de usuario
 export const CrearUsuario = async (
-  identificacion,
-  nombre,
-  RH,
-  direccion,
-  telefono,
+  id,
+  nombres,
   email,
-  contra,
-  rol
+  numero,
+  contraseña,
 ) => {
   try {
     const docRef = await addDoc(collection(db, 'usuario'), {
-      identificacion,
-      nombre,
+      id,
+      nombres,
       RH,
-      direccion,
-      telefono,
       email,
-      contra,
-      rol,
+      numero,
+      contraseña,
     })
     return docRef
   } catch (error) {
     throw error
   }
-}
+}*/
 
 // Leer Datos
 
@@ -169,10 +155,30 @@ export const userCollectionRef = collection(db, 'usuario')
 
 export const q = async (email) => {
   try {
-    const querySnapshot = await getDocs(
-      query(userCollectionRef, where('email', '==', email))
+    // Referencia a la colección de "usuarios"
+    const usuariosRef = collection(db, 'usuario')
+    const veterinariosRef = collection(db, 'veterinaria')
+
+    // Buscar en la colección de "usuarios"
+    let querySnapshot = await getDocs(
+      query(usuariosRef, where('email', '==', email))
     )
-    return querySnapshot
+
+    if (!querySnapshot.empty) {
+      return { collection: 'usuarios', querySnapshot }
+    }
+
+    // Si no se encuentra en "usuarios", buscar en "veterinarios"
+    querySnapshot = await getDocs(
+      query(veterinariosRef, where('email', '==', email))
+    )
+
+    if (!querySnapshot.empty) {
+      return { collection: 'veterinarios', querySnapshot }
+    }
+
+    // Si no se encuentra en ninguna colección, retornar null
+    return null
   } catch (error) {
     throw error
   }

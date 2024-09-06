@@ -2,7 +2,6 @@ import { loginauth, q } from '/controllers/firebase.js'
 
 // Selecciona los elementos del DOM
 const caja = document.getElementById('formlog')
-const boton = caja['btninit']
 
 async function validar() {
   const email = caja['username'].value
@@ -19,10 +18,10 @@ async function validar() {
       if (querySnapshot) {
         if (querySnapshot.collection === 'usuario') {
           alert('¡Bienvenido usuario!')
-          window.location.href = '/views/menu.ejs'
+          window.location.href = '/menu'
         } else if (querySnapshot.collection === 'veterinaria') {
           alert('¡Bienvenido veterinario!')
-          window.location.href = '/views/menu.ejs'
+          window.location.href = '/menu'
         }
       } else {
         console.log('No se encontró ningún usuario con ese email')
@@ -39,7 +38,8 @@ async function validar() {
 }
 
 // Añade un listener al botón de login
-boton.addEventListener('click', (e) => {
-  e.preventDefault()
+caja.addEventListener("submit", function(event) {
+  event.preventDefault(); // Evita el envío del formulario
+  console.log('botón pulsado')
   validar()
-})
+});

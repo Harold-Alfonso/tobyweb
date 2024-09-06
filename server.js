@@ -13,24 +13,14 @@ app.use(express.static('public'));
 app.use(express.json());  // Permite manejar JSON en el cuerpo de la solicitud
 app.use(express.urlencoded({ extended: true }));
 
-const users = {
-  Harold: '123456',
-};
+
 
 // Ruta raíz (Página de inicio de sesión)
 app.get('/', (req, res) => {
   res.render('index');
 });
 
-// Manejo de la autenticación básica con respuesta en formato JSON
-app.post('/login', (req, res) => {
-  const { username, password } = req.body;
-  if (users[username] && users[username] === password) {
-    return res.json({ success: true });
-  } else {
-    return res.json({ success: false });
-  }
-});
+
 
 // Ruta al menú principal
 app.get('/menu', (req, res) => {

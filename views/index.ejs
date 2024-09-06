@@ -20,10 +20,10 @@
         <span class="icon-close"><ion-icon name="close-outline"></ion-icon></span>
         <div class="form-box login">
             <h2>Login</h2>
-            <form action="#" id="formlog">
+            <form action="/controllers/authentication.js" id="formlog">
                 <div class="input-box">
                     <span class="icon"><ion-icon name="mail-outline"></ion-icon></ion-icon></span>
-                    <input type="text" id="username" name="username" required>
+                    <input type="email" id="username" name="username" required>
                     <label>Email</label>
                 </div>
                 <div class="input-box">
@@ -32,7 +32,7 @@
                     <label>Contraseña</label>
                 </div>
                 <div class="remember-forgot">
-                    <button class="btn" id="btninit">Login</button>
+                    <button type="submit" class="btn" id="btninit">Login</button>
                 </div>
                 <div class="login-register">
                     <p>No tiene una cuenta? <a href="#" class="register-link">Registrarse</a></p>

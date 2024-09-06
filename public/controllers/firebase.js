@@ -37,14 +37,14 @@ import {
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyAo36uqGeuyaX0VxXgo_o5WNDl6OKVJZ94",
-    authDomain: "toby-base-cac9b.firebaseapp.com",
-    projectId: "toby-base-cac9b",
-    storageBucket: "toby-base-cac9b.appspot.com",
-    messagingSenderId: "956272419573",
-    appId: "1:956272419573:web:2a0c12f09ea02929fddbbc",
-    measurementId: "G-VC6DZP43KP"
-  };
+  apiKey: "AIzaSyAo36uqGeuyaX0VxXgo_o5WNDl6OKVJZ94",
+  authDomain: "toby-base-cac9b.firebaseapp.com",
+  projectId: "toby-base-cac9b",
+  storageBucket: "toby-base-cac9b.appspot.com",
+  messagingSenderId: "956272419573",
+  appId: "1:956272419573:web:2a0c12f09ea02929fddbbc",
+  measurementId: "G-VC6DZP43KP"
+};
 
 // Inicializa Firebase
 const app = initializeApp(firebaseConfig)

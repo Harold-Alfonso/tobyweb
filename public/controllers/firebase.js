@@ -1,5 +1,5 @@
 // Importa las funciones necesarias de Firebase
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js'
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js'
 import {
   getAuth,
   signInWithEmailAndPassword,
@@ -12,14 +12,14 @@ import {
   sendPasswordResetEmail,
   FacebookAuthProvider,
   deleteUser,
-} from 'https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js'
+} from 'https://www.gstatic.com/firebasejs/10.13.1/firebase-auth.js'
 
 import {
   getStorage,
   ref,
   uploadBytes,
   getDownloadURL,
-} from 'https://www.gstatic.com/firebasejs/10.8.1/firebase-storage.js'
+} from 'https://www.gstatic.com/firebasejs/10.13.1/firebase-storage.js'
 
 import {
   getFirestore,
@@ -33,7 +33,7 @@ import {
   getDoc as firestoreGetDoc,
   setDoc,
   updateDoc,
-} from 'https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js'
+} from 'https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore.js'
 
 // Your web app's Firebase configuration
 const firebaseConfig = {

@@ -122,7 +122,7 @@ export async function eliminarCuenta(email, password) {
 // Metodos de fireStore
 
 
-/*// Agregar datos de usuario
+// Agregar datos de usuario
 export const CrearUsuario = async (
   id,
   nombres,
@@ -134,7 +134,6 @@ export const CrearUsuario = async (
     const docRef = await addDoc(collection(db, 'usuario'), {
       id,
       nombres,
-      RH,
       email,
       numero,
       contraseña,
@@ -143,7 +142,7 @@ export const CrearUsuario = async (
   } catch (error) {
     throw error
   }
-}*/
+}
 
 // Leer Datos
 
@@ -165,7 +164,7 @@ export const q = async (email) => {
     )
 
     if (!querySnapshot.empty) {
-      return { collection: 'usuarios', querySnapshot }
+      return { collection: 'usuario', querySnapshot }
     }
 
     // Si no se encuentra en "usuarios", buscar en "veterinarios"
@@ -174,7 +173,7 @@ export const q = async (email) => {
     )
 
     if (!querySnapshot.empty) {
-      return { collection: 'veterinarios', querySnapshot }
+      return { collection: 'veterinaria', querySnapshot }
     }
 
     // Si no se encuentra en ninguna colección, retornar null

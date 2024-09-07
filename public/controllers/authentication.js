@@ -1,4 +1,4 @@
-import { loginauth, q } from '/controllers/firebase.js'
+import { loginauth, q } from './firebase.js'
 
 // Selecciona los elementos del DOM
 const caja = document.getElementById('formlog')
@@ -8,8 +8,11 @@ async function validar() {
   const password = caja['password'].value
 
   try {
+    console.log('Iniciando proceso de autenticación');
     // Verifica las credenciales del usuario
     const verificar = await loginauth(email, password)
+
+    console.log('Resultado de loginauth:', verificar);
     
     if (verificar != null) {
       // Llama a la función 'q' para encontrar la colección del usuario

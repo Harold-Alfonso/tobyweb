@@ -1,6 +1,6 @@
 import { loginauth, q } from './firebase.js'
 
-// Selecciona los elementos del DOM
+
 const caja = document.getElementById('formlog')
 
 async function validar() {
@@ -9,13 +9,11 @@ async function validar() {
 
   try {
     console.log('Iniciando proceso de autenticación');
-    // Verifica las credenciales del usuario
     const verificar = await loginauth(email, password)
 
     console.log('Resultado de loginauth:', verificar);
     
     if (verificar != null) {
-      // Llama a la función 'q' para encontrar la colección del usuario
       const querySnapshot = await q(email)
 
       if (querySnapshot) {
@@ -40,9 +38,8 @@ async function validar() {
   }
 }
 
-// Añade un listener al botón de login
+
 caja.addEventListener("submit", function(event) {
-  event.preventDefault(); // Evita el envío del formulario
-  console.log('botón pulsado')
+  event.preventDefault(); 
   validar()
 });

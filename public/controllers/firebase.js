@@ -50,8 +50,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig)
 const auth = getAuth(app)
 const storage = getStorage()
-const providerGoogle = new GoogleAuthProvider()
-const providerFabook = new FacebookAuthProvider()
 const db = getFirestore(app)
 
 // autenticacion usuario
@@ -77,8 +75,6 @@ export function userstate() {
 export const registerAuth = (email, password) =>
   createUserWithEmailAndPassword(auth, email, password)
 
-// inicio con Google
-export const loginGoogle = () => signInWithPopup(auth, providerGoogle)
 
 // mensaje de confirmacion
 export const mensajeA = () => sendEmailVerification(auth.currentUser)
@@ -86,9 +82,6 @@ export const mensajeA = () => sendEmailVerification(auth.currentUser)
 // mensaje de cambio de contraseña
 export const cambiar = (email) => sendPasswordResetEmail(auth, email)
 
-// inicio sesion con Facebook
-export const loginFacebook = () => signInWithPopup(auth, providerFabook)
-export const providerFacebook = new FacebookAuthProvider()
 
 // eliminar usuario
 export function Deletuser() {
@@ -154,11 +147,9 @@ export const userCollectionRef = collection(db, 'usuario')
 
 export const q = async (email) => {
   try {
-    // Referencia a la colección de "usuarios"
     const usuariosRef = collection(db, 'usuario')
     const veterinariosRef = collection(db, 'veterinaria')
 
-    // Buscar en la colección de "usuarios"
     let querySnapshot = await getDocs(
       query(usuariosRef, where('email', '==', email))
     )
@@ -167,7 +158,6 @@ export const q = async (email) => {
       return { collection: 'usuario', querySnapshot }
     }
 
-    // Si no se encuentra en "usuarios", buscar en "veterinarios"
     querySnapshot = await getDocs(
       query(veterinariosRef, where('email', '==', email))
     )
@@ -176,7 +166,6 @@ export const q = async (email) => {
       return { collection: 'veterinaria', querySnapshot }
     }
 
-    // Si no se encuentra en ninguna colección, retornar null
     return null
   } catch (error) {
     throw error

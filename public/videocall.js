@@ -7,7 +7,7 @@ const myVideo = document.createElement('video')
 myVideo.muted = true
 const peerConnections = {}
 
-// Verifica que roomID esté disponible y correcto
+
 console.log('Room ID from script:', roomID);
 
 navigator.mediaDevices
@@ -37,8 +37,8 @@ navigator.mediaDevices
 
 peer.on('open', (id) => {
   myId = id
-  console.log('My ID:', myId); // Verifica que mi ID se imprima correctamente
-  socket.emit('newUser', id, roomID) // Asegúrate de que roomID se esté enviando correctamente
+  console.log('My ID:', myId); 
+  socket.emit('newUser', id, roomID) 
 })
 
 peer.on('error', (err) => {
@@ -46,7 +46,7 @@ peer.on('error', (err) => {
 })
 
 socket.on('userJoined', (id) => {
-  if (id !== myId) { // No llamar a uno mismo
+  if (id !== myId) { 
     const call = peer.call(id, myVideoStream)
     const vid = document.createElement('video')
     call.on('stream', (userStream) => {

@@ -38,17 +38,15 @@ app.get('/videocall/:room', (req, res) => {
   res.render('videocall', { RoomId: req.params.room });
 });
 
-io.on('connection', (socket) => {
-  socket.on('newUser', (id, room) => {
+io.on("connection" , (socket)=>{
+  socket.on('newUser' , (id , room)=>{
     socket.join(room);
-    io.to(room).emit('userJoined', id);
-
-    socket.on('disconnect', () => {
-      io.to(room).emit('userDisconnect', id);
-    });
-  });
-});
-
-server.listen(port, '0.0.0.0', () => {
-  console.log('Server running on port : ' + port);
-});
+    socket.to(room).broadcast.emit('userJoined' , id);
+    socket.on('disconnect' , ()=>{
+        socket.to(room).broadcast.emit('userDisconnect' , id);
+    })
+  })
+})
+server.listen(port , ()=>{
+  console.log("Server running on port : " + port);
+})

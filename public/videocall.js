@@ -1,5 +1,13 @@
 const socket = io('/')
-const peer = new Peer()
+const peer = new Peer({
+  config: {
+    iceServers: [
+      {
+        urls: 'stun:stun.l.google.com:19302' // STUN server
+      },
+    ]
+  }
+});
 let myVideoStream
 let myId
 const videoGrid = document.getElementById('videoDiv')

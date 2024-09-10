@@ -18,11 +18,13 @@
     </header>
     <div class="wrapper">
         <span class="icon-close"><ion-icon name="close-outline"></ion-icon></span>
+        
+        <!-- Formulario de Login -->
         <div class="form-box login">
             <h2>Login</h2>
             <form action="/controllers/authentication.js" id="formlog">
                 <div class="input-box">
-                    <span class="icon"><ion-icon name="mail-outline"></ion-icon></ion-icon></span>
+                    <span class="icon"><ion-icon name="mail-outline"></ion-icon></span>
                     <input type="email" id="username" name="username" required>
                     <label>Email</label>
                 </div>
@@ -35,50 +37,94 @@
                     <button type="submit" class="btn" id="btninit">Login</button>
                 </div>
                 <div class="login-register">
-                    <p>No tiene una cuenta? <a href="#" class="register-link">Registrarse</a></p>
+                    <p>Desea crear cuenta de usuario común? <a href="#" class="register-link">Registrarse</a></p>
+                    <p>Desea crear cuenta de veterinaria? <a href="#" class="register-linkveter">Registrarse</a></p>
                 </div>
             </form>
         </div>
+
+        <!-- Formulario de Registro -->
         <div class="form-box register">
             <h2>Registro</h2>
             <form action="#">
                 <div class="input-box">
                     <span class="icon"><ion-icon name="person-circle-outline"></ion-icon></span>
-                    <input type="text" required>
+                    <input type="text" required id="name_u">
                     <label>Nombre</label>
                 </div>
                 <div class="input-box">
-                    <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
-                    <input type="text" required>
-                    <label>Apellido</label>
+                    <span class="icon"><ion-icon name="mail-outline"></ion-icon></ion-icon></ion-icon></span>
+                    <input type="email" id="email" required>
+                    <label>Email</label>
                 </div>
                 <div class="input-box">
                     <span class="icon"><ion-icon name="card-outline"></ion-icon></span>
-                    <input type="text" required>
+                    <input type="text" id="Id" required>
                     <label>Id</label>
                 </div>
                 <div class="input-box">
                     <span class="icon"><ion-icon name="call-outline"></ion-icon></span>
-                    <input type="text" required>
+                    <input type="text" id="phone" required>
                     <label>Teléfono</label>
                 </div>
                 <div class="input-box">
                     <span class="icon"><ion-icon name="lock-closed-outline"></ion-icon></span>
-                    <input type="password" required>
+                    <input type="password" id="passwordu" required>
                     <label>Contraseña</label>
                 </div>
                 <div class="remember-forgot">
-                    <button type="submit" class="btn">Registrarse</button>
+                    <button type="submit" id="regis-us" class="btn" onclick="event.preventDefault()">Registrarse</button>
                 </div>
                 <div class="login-register">
                     <p>Ya posee una cuenta? <a href="#" class="login-link">Login</a></p>
                 </div>
             </form>
         </div>
+
+        <!-- Nuevo Formulario de Registro "Veter" -->
+        <div class="form-box veter">
+            <h2>Registro Veter</h2>
+            <form action="#">
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="paw-outline"></ion-icon></ion-icon></span>
+                    <input type="text" id="Nveter" required>
+                    <label>Nombre de la veterinaria</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="location-outline"></ion-icon></ion-icon></span>
+                    <input type="text" id="direc" required>
+                    <label>Dirección</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="mail-outline"></ion-icon></ion-icon></ion-icon></span>
+                    <input type="email" id="email_veter" required>
+                    <label>Email</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="call-outline"></ion-icon></span>
+                    <input type="text" id="tel" required>
+                    <label>Teléfono</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="lock-closed-outline"></ion-icon></span>
+                    <input type="password" id="pass_veter" required>
+                    <label>Contraseña</label>
+                </div>
+                <div class="remember-forgot">
+                    <button type="submit" id="regis-veter" class="btn" onclick="event.preventDefault()">Registrarse</button>
+                </div>
+                <div class="login-veter">
+                    <p>Ya posee una cuenta? <a href="#" class="login-link">Login</a></p>
+                </div>
+            </form>
+        </div>
+
     </div>
     <script src="/controllers/login.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script type="module" src="/controllers/authentication.js"></script>
+    <script type="module" src="/controllers/register_user.js"></script>
+    <script type="module" src="/controllers/register_veter.js"></script>
 </body>
 </html>

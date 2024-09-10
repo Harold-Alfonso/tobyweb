@@ -34,7 +34,7 @@ async function validar() {
     }
   } catch (error) {
     console.log('Error en el proceso de autenticación:', error)
-    alert('Error en el proceso de autenticación')
+    alert('Error de usuario: Verifique usuario y/o contraseña')
   }
 }
 

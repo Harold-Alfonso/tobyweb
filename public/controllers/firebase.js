@@ -6,11 +6,8 @@ import {
   signOut,
   onAuthStateChanged,
   createUserWithEmailAndPassword,
-  GoogleAuthProvider,
-  signInWithPopup,
   sendEmailVerification,
   sendPasswordResetEmail,
-  FacebookAuthProvider,
   deleteUser,
 } from 'https://www.gstatic.com/firebasejs/10.13.1/firebase-auth.js'
 
@@ -129,6 +126,29 @@ export const CrearUsuario = async (
       nombres,
       email,
       numero,
+      contraseña,
+    })
+    return docRef
+  } catch (error) {
+    throw error
+  }
+}
+
+//datos de veterinaria
+
+export const Crearveter = async (
+  nombre,
+  direccion,
+  email,
+  telefono,
+  contraseña,
+) => {
+  try {
+    const docRef = await addDoc(collection(db, 'veterinaria'), {
+      nombre,
+      direccion,
+      email,
+      telefono,
       contraseña,
     })
     return docRef

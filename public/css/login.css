@@ -105,6 +105,10 @@ header {
     height: 570px;
 }
 
+.wrapper.active-veter{
+    height: 570px;
+}
+
 .wrapper .form-box{
     width: 100%;
     padding: 40px;
@@ -120,6 +124,11 @@ header {
     transform: translateX(-400px);
 }
 
+.wrapper.active-veter .form-box.login{
+    transition: none;
+    transform: translateX(-400px);
+}
+
 .wrapper .form-box.register{
     position: absolute;
     transition: none;
@@ -130,6 +139,18 @@ header {
     transition: transform .18s ease;
     transform: translateX(0);
 }
+
+.wrapper .form-box.veter {
+    position: absolute;
+    transition: none;
+    transform: translateX(600px);
+}
+
+.wrapper.active-veter .form-box.veter {
+    transition: transform .18s ease;
+    transform: translateX(0);
+}
+
 
 .wrapper .icon-close{
     position: absolute;
@@ -236,5 +257,23 @@ header {
 }
 
 .login-register p a:hover{
+    text-decoration: underline;
+}
+
+.login-veter{
+    font-size: .9em;
+    color: #162938;
+    text-align: center;
+    font-weight: 500;
+    margin: 25px 0 10px;
+}
+
+.login-veter p a{
+    color: #162938;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.login-veter p a:hover{
     text-decoration: underline;
 }

@@ -1,15 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Main Menu</title>
-  </head>
-  <body>
+</head>
+<body>
     <h2>Main Menu</h2>
     <ul>
-      <li><a href="/videocall">Start Videocall</a></li>
-      <!-- Aquí puedes agregar más opciones al menú -->
+        <li><a href="/videocall">Start Videocall</a></li>
+        <li><button id="joinCallBtn">Join Videocall</button></li>
     </ul>
-  </body>
+
+    <!-- Modal para unirse a una videollamada -->
+    <div id="joinCallModal" style="display:none;">
+        <h3>Join a Videocall</h3>
+        <label for="roomSelect">Select a Room:</label>
+        <select id="roomSelect"></select>
+        <button id="joinRoomBtn">Join Room</button>
+        <button id="closeModalBtn">Close</button>
+    </div>
+
+    <script>
+        document.getElementById('joinCallBtn').addEventListener('click', async function() {
+            const modal = document.getElementById('joinCallModal');
+            const roomSelect = document.getElementById('roomSelect');
+            roomSelect.innerHTML = ''; // Limpiar el selector de salas
+
+            // Obtener las salas activas desde el servidor
+            const response = await fetch('/active-rooms');
+            const rooms = await response.json();
+
+            // Añadir las salas al selector
+            rooms.forEach(room => {
+                const option = document.createElement('option');
+                option.value = room;
+                option.textContent = room;
+                roomSelect.appendChild(option);
+            });
+
+            // Mostrar el modal
+            modal.style.display = 'block';
+        });
+
+        document.getElementById('joinRoomBtn').addEventListener('click', function() {
+            const roomId = document.getElementById('roomSelect').value;
+            if (roomId) {
+                window.location.href = `/videocall/${roomId}`;
+            }
+        });
+
+        document.getElementById('closeModalBtn').addEventListener('click', function() {
+            document.getElementById('joinCallModal').style.display = 'none';
+        });
+    </script>
+</body>
 </html>

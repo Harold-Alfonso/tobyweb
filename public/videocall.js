@@ -84,30 +84,7 @@ function addVideo(video, stream) {
 
 const btn=document.getElementById('close')
 
-function updateVideoLayout() {
-  const videoDiv = document.getElementById('videoDiv');
-  const videos = videoDiv.querySelectorAll('video');
-  
-  if (videos.length === 1) {
-    videoDiv.classList.add('single');
-    videoDiv.classList.remove('multiple');
-  } else {
-    videoDiv.classList.remove('single');
-    videoDiv.classList.add('multiple');
-  }
-}
 
-function addVideoStream(video) {
-  const videoDiv = document.getElementById('videoDiv');
-  videoDiv.appendChild(video);
-  updateVideoLayout();
-}
-
-function removeVideoStream(video) {
-  const videoDiv = document.getElementById('videoDiv');
-  videoDiv.removeChild(video);
-  updateVideoLayout();
-}
 
 btn.addEventListener('click',()=>{
   alert('saliendo de videollamada')

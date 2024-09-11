@@ -9,16 +9,15 @@
     <h2>Main Menu</h2>
     <ul>
         <li><a href="/videocall">Start Videocall</a></li>
-        <li><button id="joinCallBtn">Join Videocall</button></li>
+        <li><button id="joinCallBtn">Unirse a videollamada</button></li>
     </ul>
 
-    <!-- Modal para unirse a una videollamada -->
     <div id="joinCallModal" style="display:none;">
         <h3>Join a Videocall</h3>
-        <label for="roomSelect">Select a Room:</label>
+        <label for="roomSelect">Seleccione la sala:</label>
         <select id="roomSelect"></select>
-        <button id="joinRoomBtn">Join Room</button>
-        <button id="closeModalBtn">Close</button>
+        <button id="joinRoomBtn">Entrar en la sala</button>
+        <button id="closeModalBtn">Serrar</button>
     </div>
 
     <script>
@@ -39,7 +38,6 @@
                 roomSelect.appendChild(option);
             });
 
-            // Mostrar el modal
             modal.style.display = 'block';
         });
 

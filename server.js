@@ -7,7 +7,7 @@ const { v4: uuidv4 } = require('uuid');
 const { ExpressPeerServer } = require('peer');
 const peer = ExpressPeerServer(server, { debug: true });
 
-let activeRooms = {}; // Objeto para almacenar las salas activas
+let activeRooms = {}; 
 
 app.use('/peerjs', peer);
 app.set('view engine', 'ejs');
@@ -20,15 +20,20 @@ app.get('/', (req, res) => {
   res.render('index');
 });
 
-// Ruta al menú principal
+// Ruta al menú de usuarios
 app.get('/menu', (req, res) => {
-  res.render('menu', { activeRooms: Object.keys(activeRooms) }); // Pasar las salas activas
+  res.render('menu', { activeRooms: Object.keys(activeRooms) }); 
+});
+
+// Ruta al menú de veterinarias
+app.get('/menuVeter', (req, res) => {
+  res.render('menuVeter', { activeRooms: Object.keys(activeRooms) }); 
 });
 
 // Ruta para iniciar una videollamada
 app.get('/videocall', (req, res) => {
-  const roomId = uuidv4(); // Genera un ID único para la sala
-  activeRooms[roomId] = true; // Agregar la sala a la lista de activas
+  const roomId = uuidv4(); 
+  activeRooms[roomId] = true; 
   res.redirect(`/videocall/${roomId}`);
 });
 
@@ -36,7 +41,7 @@ app.get('/videocall', (req, res) => {
 app.get('/videocall/:room', (req, res) => {
   const roomId = req.params.room;
   if (!activeRooms[roomId]) {
-    return res.redirect('/menu'); // Redirigir al menú si la sala no existe
+    return res.redirect('/menu'); 
   }
   res.render('videocall', { RoomId: roomId });
 });
@@ -57,7 +62,7 @@ io.on('connection', (socket) => {
       // Verificar si la sala está vacía
       const usersInRoom = io.sockets.adapter.rooms.get(room) || new Set();
       if (usersInRoom.size === 0) {
-        delete activeRooms[room]; // Eliminar la sala de la lista de activas
+        delete activeRooms[room]; 
       }
     });
   });

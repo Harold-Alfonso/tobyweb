@@ -235,3 +235,36 @@ export const archivoimg = async (file, referencia) => {
   const url = await getDownloadURL(storageref)
   return url
 }
+
+export const obtenerDatosUsuario = async (email) => {
+  try {
+    const usuariosRef = collection(db, 'usuario');
+    const q = query(usuariosRef, where('email', '==', email));
+    const querySnapshot = await getDocs(q);
+
+    if (!querySnapshot.empty) {
+      let datos = {};
+      querySnapshot.forEach((doc) => {
+        datos = doc.data();
+      });
+      return datos;
+    }
+
+    const veterinariosRef = collection(db, 'veterinaria');
+    const qVete = query(veterinariosRef, where('email', '==', email));
+    const querySnapshotVete = await getDocs(qVete);
+
+    if (!querySnapshotVete.empty) {
+      let datos = {};
+      querySnapshotVete.forEach((doc) => {
+        datos = doc.data();
+      });
+      return datos;
+    }
+
+    return null;
+  } catch (error) {
+    console.error('Error obteniendo datos del usuario:', error);
+    throw error;
+  }
+};

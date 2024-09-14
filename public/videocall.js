@@ -81,12 +81,3 @@ function addVideo(video, stream) {
   })
   videoGrid.append(video)
 }
-
-const btn=document.getElementById('close')
-
-
-
-btn.addEventListener('click',()=>{
-  alert('saliendo de videollamada')
-  window.location.href = '/menu'
-})

@@ -18,11 +18,11 @@ async function validar() {
 
       if (querySnapshot) {
         if (querySnapshot.collection === 'usuario') {
-          alert('¡Bienvenido usuario!')
-          window.location.href = '/menu'
+          alert('¡Bienvenido usuario!');
+          window.location.href = `/menu?email=${encodeURIComponent(email)}`;
         } else if (querySnapshot.collection === 'veterinaria') {
-          alert('¡Bienvenido veterinario!')
-          window.location.href = '/menu'
+          alert('¡Bienvenido veterinario!');
+          window.location.href = `/menuVeter?email=${encodeURIComponent(email)}`;
         }
       } else {
         console.log('No se encontró ningún usuario con ese email')

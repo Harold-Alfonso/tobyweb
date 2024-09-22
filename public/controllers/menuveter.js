@@ -1,15 +1,28 @@
-import { obtenerDatosUsuario } from './firebase.js';
+import { obtenerDatosUsuario, userstate, loginout } from './firebase.js';
 
-// Función para obtener parámetros de la URL
-function getQueryParam(param) {
-  const urlParams = new URLSearchParams(window.location.search);
-  return urlParams.get(param);
-}
+userstate()
 
-const email = getQueryParam('email');
+const btce=document.getElementById('logoutBtn')
+
+const email = localStorage.getItem('uservEmail');
 console.log('Email del usuario:', email);
 
 const nameus = document.getElementById('navbar-title');
+
+//función para cerrar sesión
+
+async function cerrarsesion() {
+  const verificacion = loginout()
+  const comprobar = await verificacion
+
+    .then((comprobar) => {
+      alert('sesion cerrada')
+      window.location.href = '/'
+    })
+    .catch((error) => {
+      alert('Sesion no cerrada')
+    })
+}
 
 // Llamar a la función para obtener los datos del usuario
 async function cargarDatosUsuario(email) {
@@ -18,8 +31,6 @@ async function cargarDatosUsuario(email) {
 
     if (datos) {
       const nombres = datos.nombre || 'No disponible';
-      const dir = datos.direccion || 'No disponible';
-      const tel = datos.telefono || 'No disponible';
       const email = datos.email || 'No disponible';
 
       localStorage.setItem('userEmail', email);
@@ -63,3 +74,7 @@ document.getElementById('joinRoomBtn').addEventListener('click', function() {
 document.getElementById('closeModalBtn').addEventListener('click', function() {
     document.getElementById('joinCallModal').style.display = 'none';
 });
+
+window.addEventListener('DOMContentLoaded', async () => {
+  btce.addEventListener('click', cerrarsesion)
+})

@@ -59,16 +59,17 @@ export const loginout = () => signOut(auth)
 // estado del usuario
 export function userstate() {
   onAuthStateChanged(auth, (user) => {
-    const uid = user.uid
-    console.log(uid)
     if (user) {
+      const uid = user.uid;
+      console.log('User ID:', uid);
     } else {
-      window.location.href = '../index.html'
+      console.log('No user is signed in');
+      window.location.href = '/';
     }
-  })
+  });
 }
 
-// crar nuevo usuario
+// crear nuevo usuario
 export const registerAuth = (email, password) =>
   createUserWithEmailAndPassword(auth, email, password)
 
@@ -76,8 +77,6 @@ export const registerAuth = (email, password) =>
 // mensaje de confirmacion
 export const mensajeA = () => sendEmailVerification(auth.currentUser)
 
-// mensaje de cambio de contraseña
-export const cambiar = (email) => sendPasswordResetEmail(auth, email)
 
 
 // eliminar usuario
@@ -157,13 +156,29 @@ export const Crearveter = async (
   }
 }
 
-// Leer Datos
+//datos de veterinarios
 
-export const viewdates = () => getDocs(collection(db, 'usuario'))
+export const Crear_new_vet = async (
+  nombre,
+  id,
+  telefono,
+  veterinaria,
+) => {
+  try {
+    const docRef = await addDoc(collection(db, 'veterinarios'), {
+      nombre,
+      id,
+      telefono,
+      veterinaria,
+    })
+    return docRef
+  } catch (error) {
+    throw error
+  }
+}
+
 
 // buscar datos
-
-export const userCollectionRef = collection(db, 'usuario')
 
 export const q = async (email) => {
   try {
@@ -192,49 +207,54 @@ export const q = async (email) => {
   }
 }
 
-//  eliminar un documento Firestore
-export const eliminarDocumento = (coleccion, idDocumento) => {
-  return deleteDoc(doc(db, coleccion, idDocumento))
-}
+//eliminar veterinario
+
+export const eliminarDocumento = async (idVeterinario) => {
+  try {
+    const veterinariosRef = collection(db, 'veterinarios');
+
+    const q = query(veterinariosRef, where('id', '==', idVeterinario));
+
+    const querySnapshot = await getDocs(q);
+
+    querySnapshot.forEach(async (docSnapshot) => {
+      await deleteDoc(docSnapshot.ref);
+    });
+
+    console.log(`Documento con ID ${idVeterinario} eliminado exitosamente.`);
+  } catch (error) {
+    console.error('Error al eliminar el documento:', error);
+    throw error;
+  }
+};
 
 export const doc = firestoreDoc
 export const getDoc = firestoreGetDoc
 export const Db = getFirestore(app)
 
-// agregar datos con ID
+// actualizar documento de veterinario
+export const actualizarDocumento = async (idVeterinario, nuevosDatos) => {
+  const db = getFirestore();
+  const veterinariosRef = collection(db, "veterinarios");
+  const b = query(veterinariosRef, where("id", "==", idVeterinario));
 
-export const setregister = (codigo, name, descrp, cant, img) =>
-  setDoc(doc(db, 'cities', codigo), {
-    codigo,
-    name,
-    country,
-    cant,
-    img,
-  })
-
-// leer registro especifico
-
-export const Getregister = (codigo) => (getDoc = doc(db, 'cities', codigo))
-
-// actualizar documento
-export const actualizarDocumento = async (docRef, data) => {
   try {
-    await updateDoc(docRef, data)
-    console.log('Documento actualizado exitosamente')
+    const querySnapshot = await getDocs(b);
+    
+    if (!querySnapshot.empty) {
+      const docRef = querySnapshot.docs[0].ref;  
+
+      await updateDoc(docRef, nuevosDatos);
+      console.log("Veterinario actualizado exitosamente");
+    } else {
+      console.error("Veterinario no encontrado");
+    }
   } catch (error) {
-    console.error('Error al actualizar el documento:', error)
-    throw error
+    console.error("Error al actualizar el veterinario:", error);
+    throw error;
   }
-}
+};
 
-//funciones de storage
-
-export const archivoimg = async (file, referencia) => {
-  const storageref = ref(storage, 'avatars/${referencia}/${file.name}')
-  await uploadBytes(storageref, file)
-  const url = await getDownloadURL(storageref)
-  return url
-}
 
 export const obtenerDatosUsuario = async (email) => {
   try {
@@ -265,6 +285,25 @@ export const obtenerDatosUsuario = async (email) => {
     return null;
   } catch (error) {
     console.error('Error obteniendo datos del usuario:', error);
+    throw error;
+  }
+};
+
+// Buscar veterinarios 
+export const buscarVeter = async (nombre) => {
+  try {
+    const veterinariosRef = collection(db, 'veterinarios');
+    const q = query(veterinariosRef, where('veterinaria', '==', nombre));
+    const querySnapshot = await getDocs(q);
+    const veterinarios = [];
+
+    querySnapshot.forEach((doc) => {
+      veterinarios.push(doc.data());
+    });
+
+    return veterinarios;
+  } catch (error) {
+    console.error('Error obteniendo veterinarios:', error);
     throw error;
   }
 };

@@ -1,12 +1,27 @@
-import { obtenerDatosUsuario } from './firebase.js';
+import { obtenerDatosUsuario, userstate, loginout } from './firebase.js';
 
-// Función para obtener parámetros de la URL
-function getQueryParam(param) {
-  const urlParams = new URLSearchParams(window.location.search);
-  return urlParams.get(param);
+userstate()
+
+const logout = document.getElementById('logoutBtn')
+
+//función para cerrar sesión
+
+async function cerrarsesion() {
+  const verificacion = loginout()
+  const comprobar = await verificacion
+
+    .then((comprobar) => {
+      alert('sesion cerrada')
+      window.location.href = '/'
+    })
+    .catch((error) => {
+      alert('Sesion no cerrada')
+    })
 }
 
-const email = getQueryParam('email');
+// Función para obtener parámetros de la URL
+
+const email = localStorage.getItem('usernEmail');
 console.log('Email del usuario:', email);
 
 const nameus = document.getElementById('navbar-title');
@@ -65,3 +80,6 @@ document.getElementById('closeModalBtn').addEventListener('click', function() {
     document.getElementById('joinCallModal').style.display = 'none';
 });
 
+window.addEventListener('DOMContentLoaded', async () => {
+  logout.addEventListener('click', cerrarsesion)
+})

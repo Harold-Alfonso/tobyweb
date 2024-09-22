@@ -10,8 +10,8 @@
     <nav id="navbar">
         <h2 id="navbar-title"></h2>
         <div id="navbar-links">
-            <a href="/manage-vets">Gestionar mis Veterinarios</a>
-            <button id="logoutBtn">Cerrar Sesión</button>
+            <button id="g_mbtn">Gestionar mis Veterinarios</button>
+            <button id="logoutBtn" onclick="event.preventDefault()">Cerrar Sesión</button>
         </div>
     </nav>
 
@@ -31,6 +31,81 @@
             <button id="closeModalBtn">Cerrar</button>
         </div>
     </div>
+    <dialog id="modal-miv" class="modal_gestion">
+        <span class="icon-close" id="btn_cerrar_m"><ion-icon name="close-outline"></ion-icon></span>
+        <h2>Modal para la gestión de veterinarios</h2>
+        <button class="btn" id="new_veter">Registrar nuevo veterinario</button>
+        <div class="container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>NOMBRE</th>
+                        <th>TELÉFONO</th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+                <tbody id="menu_gest">
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </dialog>
+    <dialog id="modal_new_veter" class="modal_gestion">
+        <span class="icon-close" id="btn_cerrar_new"><ion-icon name="close-outline"></ion-icon></span>
+        <div class="form-box">
+            <h2>Agregar nuevo veterinario</h2>
+            <form method="dialog">
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="card-outline"></ion-icon></span>
+                    <input type="text" id="Idv" required>
+                    <label>Id</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="person-circle-outline"></ion-icon></span>
+                    <input type="text" required id="name_v">
+                    <label>Nombre</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="call-outline"></ion-icon></span>
+                    <input type="text" id="phonev" required>
+                    <label>Teléfono</label>
+                </div>
+                <div>
+                    <button class="btn2" type="submit" id="regis-vet" onclick="event.preventDefault()">Registrar</button>
+                </div>
+            </form>
+        </div>
+    </dialog>
+    <dialog id="modal_ac_veter" class="modal_gestion">
+        <span class="icon-close" id="btn_cerrar_ac"><ion-icon name="close-outline"></ion-icon></span>
+        <div class="form-box">
+            <h2>Actualizar datos</h2>
+            <form method="dialog">
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="person-circle-outline"></ion-icon></span>
+                    <input type="text" required id="name_ac">
+                    <label id="acN">Nombre</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="call-outline"></ion-icon></span>
+                    <input type="text" id="phoneac" required>
+                    <label id="acP">Teléfono</label>
+                </div>
+                <div>
+                    <button class="btn2" type="submit" id="ac-vet" onclick="event.preventDefault()">Actualizar</button>
+                </div>
+            </form>
+        </div>
+    </dialog>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script type="module" src="/controllers/menuveter.js"></script>
+    <script type="module" src="/controllers/misveter.js"></script>
 </body>
 </html>

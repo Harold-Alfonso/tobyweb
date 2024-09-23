@@ -1,4 +1,6 @@
-import { q } from './firebase.js';
+import { q,userstate } from './firebase.js';
+
+userstate()
 
 // Recuperar el email desde localStorage
 const email = localStorage.getItem('userEmail');

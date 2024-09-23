@@ -11,8 +11,7 @@
         <h2 id="navbar-title">Bienvenido</h2>
         <h1 id="em_title"></h1>
         <div id="navbar-links">
-            <a href="/manage-pet">Gestionar la información de mi mascota</a>
-            <a href="/veterinarias">Veterinarias Registradas</a>
+            <button id="veterR">Veterinarias Registradas</button>
             <button id="logoutBtn" onclick="event.preventDefault()">Cerrar Sesión</button>
         </div>
     </nav>
@@ -33,6 +32,54 @@
             <button id="closeModalBtn">Cerrar</button>
         </div>
     </div>
+
+    <dialog id="modal_veteri" class="modal_gestion">
+        <span class="icon-close" id="btn_cerrar_mv"><ion-icon name="close-outline"></ion-icon></span>
+        <h2>Veterinarias registradas</h2>
+        <div class="container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>NOMBRE</th>
+                        <th>CORREO</th>
+                        <th>ACCIÓN</th>
+                    </tr>
+                </thead>
+                <tbody id="tabla_veter">
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </dialog>
+    <dialog id="modal-miv" class="modal_gestion">
+        <span class="icon-close" id="btn_cerrar_m"><ion-icon name="close-outline"></ion-icon></span>
+        <h2 id="Nvet">Veterinarios</h2>
+        <div class="container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>NOMBRE</th>
+                        <th>TELÉFONO</th>
+                    </tr>
+                </thead>
+                <tbody id="menu_gest">
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </dialog>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script type="module" src="/controllers/menu.js"></script>
+    <script type="module" src="/controllers/veterinarias.js"></script>
 </body>
 </html>

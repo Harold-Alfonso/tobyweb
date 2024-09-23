@@ -307,3 +307,22 @@ export const buscarVeter = async (nombre) => {
     throw error;
   }
 };
+
+// Veterinarias registradas
+
+export const veterinarias_R= async ()=>{
+  try {
+    const veterinariasRef = collection(db, 'veterinaria');
+    const querySnapshot = await getDocs(veterinariasRef);
+    const veterinarias = [];
+
+    querySnapshot.forEach((doc) => {
+      veterinarias.push(doc.data());
+    });
+
+    return veterinarias;
+  } catch (error) {
+    console.error('Error obteniendo las veterinarias:', error);
+    throw error;
+  }
+}

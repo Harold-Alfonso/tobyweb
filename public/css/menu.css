@@ -133,3 +133,133 @@ button {
 .modal-content button:hover {
     background-color: #555;
 }
+
+.modal_gestion::backdrop {
+    background: transparent;
+}
+
+.modal_gestion {
+    max-width: 110ch;
+    width: 100%; 
+    margin: 0 auto; 
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); 
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+}
+
+.modal_gestion .icon-close{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 35px;
+    height: auto;
+    background: #162938;
+    font-size: 2em;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom-left-radius: 20px;
+    cursor: pointer;
+    z-index: 1;
+}
+
+#modal_veteri h2 {
+    margin-top: 0;
+    text-align: center;
+}
+
+#modal-miv h2 {
+    margin-top: 0;
+    text-align: center;
+}
+
+button#btn_cerrar_mv {
+    display: block;
+    margin: 10px auto;
+    padding: 10px 20px;
+}
+
+.btn{
+    width: 100%;
+    height: 30px;
+    background: #162938;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1em;
+    color: #fff;
+    font-weight: 500;
+}
+
+.btn2{
+    width: 100%;
+    height: 45px;
+    background: #162938;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1em;
+    color: #fff;
+    font-weight: 500;
+}
+
+.container{
+    border: solid 1px rgba(255, 255, 255, 0.2);
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+}
+
+table{
+    margin: 0 auto;
+    position: relative;
+    color: #050404;
+    font-size: 14px;
+    border-collapse: collapse;
+    align-content: center;
+    width: 95%;
+}
+
+thead{
+    background: rgba(255, 255, 255, 0.2);
+}
+
+th{
+    padding: 20px 15px;
+    font-weight: 700;
+    text-align: left;
+}
+
+td{
+    padding: 15px;
+    border-bottom: solid 1px rgba(255, 255, 255, 0.2);
+}
+
+tbody tr:hover{
+    background: rgba(255, 255, 255, 0.4);
+}
+
+.busq-btn{
+    width: 100%;
+    height: 30px;
+    background: #162938;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1em;
+    color: #fff;
+    font-weight: 500;
+}

@@ -19,7 +19,7 @@ async function cerrarsesion() {
     })
 }
 
-// Función para obtener parámetros de la URL
+// Función para obtener parámetros de localStore
 
 const email = localStorage.getItem('usernEmail');
 console.log('Email del usuario:', email);

@@ -312,7 +312,7 @@ header {
 
 .wrapper-qsomos, .wrapper-servis {
     position: fixed;
-    width: 900px;
+    width: 1100px;
     height: auto;
     background: transparent;
     border: 2px solid rgba(255, 255, 255, .5);
@@ -334,7 +334,7 @@ header {
 .wrapper-qsomos .form-box, .wrapper-servis .form-box {
     width: 100%;
     padding: 40px;
-    text-align: center;
+    text-align: justify;
 }
 
 .wrapper-qsomos .form-box p, .wrapper-servis .form-box p {
@@ -342,6 +342,7 @@ header {
     color: #162938;
     font-weight: 500;
     margin-top: 20px;
+    text-align: justify;
 }
 
 .wrapper-qsomos .icon-close, .wrapper-servis .icon-close {

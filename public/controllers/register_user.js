@@ -2,6 +2,7 @@ import {
   registerAuth,
   mensajeA,
   CrearUsuario,
+  Verificar_Us_Id
 } from './firebase.js'
 
 const registrar = document.getElementById('regis-us')
@@ -12,6 +13,12 @@ async function registro() {
   const id = document.getElementById('Id').value
   const phone = document.getElementById('phone').value
   const password = document.getElementById('passwordu').value
+
+  const verificacion=await Verificar_Us_Id(id)
+  if (verificacion.exists) {
+    alert(`Error: Ya existe un usuario registrado con el mismo ${verificacion.field}.`)
+    return 
+  }
 
   const validar = async () => {
     try {

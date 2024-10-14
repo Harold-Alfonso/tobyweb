@@ -2,6 +2,7 @@ import {
     registerAuth,
     mensajeA,
     Crearveter,
+    Verificar_Ex_V
   } from './firebase.js'
   
   const registrar = document.getElementById('regis-veter')
@@ -12,6 +13,12 @@ import {
     const dir = document.getElementById('direc').value
     const phone = document.getElementById('tel').value
     const password = document.getElementById('pass_veter').value
+
+    const verificacion = await Verificar_Ex_V(email, name)
+    if (verificacion.exists) {
+      alert(`Error: Ya existe una veterinaria registrada con el mismo ${verificacion.field}.`)
+      return 
+    }
   
     const validar = async () => {
       try {

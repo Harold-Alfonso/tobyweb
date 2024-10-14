@@ -11,7 +11,7 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: url(/resources/Diseño\ sin\ título.png) no-repeat;
+    background: url(/resources/BIENVENIDO.png) no-repeat;
     background-size: cover;
     background-position: center;
 }
@@ -32,18 +32,22 @@ header {
     font-size: 2em;
     color: #5f5858;
     user-select: none;
+    width: 70px;
+    height: 60px;
 }
 
-.navigation a {
+.navigation .btnqsomos {
     position: relative;
     font-size: 1.1em;
     color: #5f5858;
     text-decoration: none;
     font-weight: 500;
     margin-left: 40px;
+    border: transparent;
+    background: transparent;
 }
 
-.navigation a::after {
+.navigation .btnqsomos::after {
     content: '';
     position: absolute;
     left: 0;
@@ -56,7 +60,35 @@ header {
     transition: transform .5s;
 }
 
-.navigation a:hover::after{
+.navigation .btnqsomos:hover::after{
+    transform: scaleX(1);
+}
+
+.navigation .btnservis {
+    position: relative;
+    font-size: 1.1em;
+    color: #5f5858;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 40px;
+    border: transparent;
+    background: transparent;
+}
+
+.navigation .btnservis::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 100%;
+    height: 3px;
+    background: #5f5858;
+    border-radius: 5px;
+    transform: scaleX(0);
+    transition: transform .5s;
+}
+
+.navigation .btnservis:hover::after{
     transform: scaleX(1);
 }
 
@@ -81,7 +113,7 @@ header {
 }
 
 .wrapper{
-    position: relative;
+    position: fixed;
     width: 400px;
     height: 440px;
     background: transparent;
@@ -276,4 +308,55 @@ header {
 
 .login-veter p a:hover{
     text-decoration: underline;
+}
+
+.wrapper-qsomos, .wrapper-servis {
+    position: fixed;
+    width: 900px;
+    height: auto;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, .5);
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transform: scale(0);
+    transition: transform .5s ease;
+}
+
+.wrapper-qsomos.active-popup, .wrapper-servis.active-popup {
+    transform: scale(1);
+}
+
+.wrapper-qsomos .form-box, .wrapper-servis .form-box {
+    width: 100%;
+    padding: 40px;
+    text-align: center;
+}
+
+.wrapper-qsomos .form-box p, .wrapper-servis .form-box p {
+    font-size: 1em;
+    color: #162938;
+    font-weight: 500;
+    margin-top: 20px;
+}
+
+.wrapper-qsomos .icon-close, .wrapper-servis .icon-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 45px;
+    height: 45px;
+    background: #162938;
+    font-size: 2em;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom-left-radius: 20px;
+    cursor: pointer;
+    z-index: 1;
 }

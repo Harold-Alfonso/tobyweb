@@ -326,3 +326,54 @@ export const veterinarias_R= async ()=>{
     throw error;
   }
 }
+
+//Verificar que no hallan veterinarias ya registradas con los datos que se intentan registrar
+
+export const Verificar_Ex_V = async(email, nombre)=>{
+  try {
+    const veterinariasRef = collection(db, 'veterinaria');
+    
+    // Verificar por correo
+    const queryEmail = query(veterinariasRef, where('email', '==', email));
+    const querySnapshotEmail = await getDocs(queryEmail);
+
+    if (!querySnapshotEmail.empty) {
+      return { exists: true, field: 'email' }; 
+    }
+
+    // Verificar por nombre
+    const queryNombre = query(veterinariasRef, where('nombre', '==', nombre));
+    const querySnapshotNombre = await getDocs(queryNombre);
+
+    if (!querySnapshotNombre.empty) {
+      return { exists: true, field: 'nombre' }; 
+    }
+
+    return { exists: false }; 
+  } catch (error) {
+    console.error('Error verificando la existencia de veterinaria:', error);
+    throw error;
+  }
+}
+
+//Verificar que no hallan usuarios ya registradas con el mismo id que se intenta registrar
+
+export const Verificar_Us_Id=async(id)=>{
+
+  try{
+    const UserRef=collection(db,'usuario')
+
+    const queryId=query(UserRef,where('id','==',id))
+    const BusquedaId=await getDocs(queryId)
+
+    if(!BusquedaId.empty){
+      return { exists: true, field: 'id' };
+    }
+
+    return { exists: false }; 
+  }catch (error) {
+    console.error('Error verificando la existencia de usuario:', error);
+    throw error;
+  }
+  
+}

@@ -6,7 +6,7 @@
 
 body {
   font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
+  background-color: #FADCD2;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -50,7 +50,7 @@ video {
 #footer {
   width: 100%;
   height: 60px;
-  background-color: #fff;
+  background-color: #FADCD2;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -64,7 +64,7 @@ button {
   text-align: center;
   border-radius: 20px;
   border: none;
-  background-color: #0a74da;
+  background-color: #555;
   color: white;
   font-size: 16px;
   cursor: pointer;
@@ -72,7 +72,7 @@ button {
 }
 
 button:hover {
-  background-color: white;
-  color: #0a74da;
-  border: 2px solid #0a74da;
+  background-color: #777;
+  color: white;
+  border: 2px solid black;
 }

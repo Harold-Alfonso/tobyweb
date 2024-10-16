@@ -36,7 +36,7 @@ async function cargarDatosUsuario(email) {
       const email = datos.email || 'No disponible';
 
       localStorage.setItem('userEmail', email);
-      nameus.textContent = `Bienvenido ${nombres}`;
+      nameus.textContent = `Welcome ${nombres}`;
       us.textContent = `${email}`;
     } else {
       console.log('No se encontraron datos para el email proporcionado.');
